@@ -1,0 +1,14 @@
+{
+  "name": "drupal/lucius_solr",
+  "type": "drupal-module",
+  "description": "Drupal 8 Solr integration",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/lucius_solr",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/lucius_solr",
+    "source": "http://cgit.drupalcode.org/lucius_solr"
+  },
+  "require": { }
+}

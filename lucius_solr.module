@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Contains lucius_solr.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function lucius_solr_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the lucius_solr module.
+    case 'help.page.lucius_solr':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Drupal 8 Solr integration') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function lucius_solr_page_attachments_alter(array &$attachments) {
+
+  // Check if the autocomplete settings are available.
+  if (isset($attachments['#attached']['drupalSettings']['search_autocomplete'])) {
+
+    // Check if filters are empty.
+    if (empty($attachments['#attached']['drupalSettings']['search_autocomplete']['lucius_solr']['filters'])) {
+      // Add filter if nothing is set to fix bug noted in
+      // https://www.drupal.org/node/2686205.
+      $attachments['#attached']['drupalSettings']['search_autocomplete']['lucius_solr']['filters'][] = 'query';
+    }
+    elseif (empty($attachments['#attached']['drupalSettings']['search_autocomplete']['filters'])) {
+      $attachments['#attached']['drupalSettings']['search_autocomplete']['filters'][] = 'query';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function lucius_solr_theme($existing, $type, $theme, $path) {
+  return array(
+    'lucius_solr_search_block' => array(
+      'variables' => array(
+        'query' => NULL,
+        'results' => NULL,
+      ),
+      'template'  => 'block--solr-search',
+    ),
+  );
+}

@@ -1,0 +1,17 @@
+
+# In order to to create pages it is necessary to define routes for them.
+# A route maps a URL path to a controller. It defines what function
+# or method will be called when a URL is accessed.
+# If the user accesses http://drupal8.dev/lucius/solr/autocomplete, the routing
+# system will look for a route with that path. In this case it will find a
+# match, and execute the _controller callback. In this case the callback is
+# defined as a classname
+# ("\Drupal\lucius_solr\Controller\luciusSolrController")
+# and a method ("lucius_solr_autocomplete").
+lucius_solr.lucius_solr_controller_lucius_solr_autocomplete:
+  path: 'lucius/solr/autocomplete'
+  defaults:
+    _controller: '\Drupal\lucius_solr\Controller\luciusSolrController::lucius_solr_autocomplete'
+    _title: 'lucius Solr Autocomplete'
+  requirements:
+    _permission: 'access content'

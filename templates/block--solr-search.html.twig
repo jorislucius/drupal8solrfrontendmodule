@@ -1,0 +1,21 @@
+<!-- start search -->
+<div class="content_search">
+  <div class="block">
+    <h3>{{ "You searched for"|t }}</h3>
+    <div class="words">{{ query }}</div>
+  </div>
+</div>
+<!-- end search -->
+{% if (results|render|trim is not empty) %}
+<!-- start result -->
+<div class="content_result">
+  <aside>
+    <h5>lucius.NL</h5>
+      {{ results }}
+  </aside>
+</div>
+{% else %}
+  <div class="content_text">
+    <p>Bummer, we didn't find any results. Please try again.</p>
+  </div>
+{% endif %}
